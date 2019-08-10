@@ -1,8 +1,10 @@
 import cv2
 import os
-import sys 
+import sys
+import spinner
 import data_resize as dr
- 
+
+spinner = spinner.Spinner()
 
 
 
@@ -161,11 +163,11 @@ oldpath = "data/"
 if len(sys.argv) > 1:
     oldpath = sys.argv[1]
 else: 
-	oldpath=input("Enter path ")
+    oldpath=input("Enter path ")
 
 if len(oldpath) <= 1:
-	print("invalid input \n")
-	exit()
+    print("invalid input \n")
+    exit()
 
 path = os.path.abspath(oldpath)
 r=12
@@ -174,7 +176,9 @@ image_id_from = 0
 
 output="tmp_data_output/"
 
- 
-collect_images_dir (path, r, c, output) 
+
+spinner.start("   processing")
+collect_images_dir (path, r, c, output)
+spinner.stop()
 print("\r process completed path : " + os.path.abspath(output))
 
